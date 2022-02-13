@@ -24,16 +24,22 @@ int main()
 	}
 	std::cout << std::endl;
 	int f = 1;
-	for (int i = 1; i < a.size(); i++)
+	for (int i = 0; i < a.size()-1; i++)
 	{
-		if (a[i-1]==a[i])
+		if ((a[i]==a[i+1])&&((i+1)!=(a.size()-1)))
 		{
 			f++;
+		}
+		else if ((i + 1) == (a.size() - 1))
+		{
+			f++;
+			frecv.push_back(f);
+			cifra.push_back(a[i]);
 		}
 		else
 		{
 			frecv.push_back(f);
-			cifra.push_back(a[i - 1]);
+			cifra.push_back(a[i]);
 			f = 1;
 		}
 	}
