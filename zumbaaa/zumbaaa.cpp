@@ -38,6 +38,7 @@ int main()
 		}
 	}
 	
+
 	std::cout << "Vectorul de frecvente este: \n";
 	for (auto it : frecv)
 	{
