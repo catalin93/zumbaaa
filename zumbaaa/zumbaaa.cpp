@@ -3,21 +3,11 @@
 #include<vector>
 #include <algorithm>
 
-int CelMaiMareSir(std::vector <int> vect) {
-	//cand se va apela functia se va introduce ca parametru vectorul de frecvente
-	int max = vect[0];
-	for (int i = 1; i < vect.size(); i++)
-	{
-		if (vect[max] < vect[i])
-			max = i;
-	}
-	// se returneaza pozitia pe care se gaseste cel mai mare element
-	return max;
-}
+
 int LungimeSirEliminat(int iMax_m, std::vector <int> frecv_m, std::vector <int> cifra_m)
-{  // daca este pe pozitia 0 ne da eroare
+{  
 	int n = 0;
-	if (iMax_m == 0)
+	if ((iMax_m == 0) || (iMax_m == (frecv_m.size()-1)))
 	{
 		return n;
 	}
@@ -31,7 +21,7 @@ int LungimeSirEliminat(int iMax_m, std::vector <int> frecv_m, std::vector <int> 
 		}
 		else
 			return n;
-	} while (n < 20); //todo: while (n < (frecv_m.size() / 2));
+	} while (n < (frecv_m.size() / 2)); //todo: while (n < (frecv_m.size() / 2));
 	return n;
 
 }
@@ -42,6 +32,7 @@ int main()
 	std::vector <int> frecv;
 	std::vector <int> cifra;
 	int val;
+	std::cout << "Dati un sir de cifre, iar cand doriti sa terminati sirul introduce-ti o valoare negativa \n";
 	while (std::cin>>val)
 	{
 		if (val < 0)
@@ -52,7 +43,7 @@ int main()
 	}
 	for (auto it: a)
 	{
-		std::cout << it << "-";
+		std::cout << it << " ";
 	}
 	std::cout << std::endl;
 	int f = 1; //todo:: f = 1 cred ca ar trebui sa fie in for
@@ -76,21 +67,20 @@ int main()
 		}
 	}
 	
-
 	std::cout << "Vectorul de frecvente este: \n";
 	for (auto it : frecv)
 	{
-		std::cout << it << "-";
+		std::cout << it << " ";
 	}
 	std::cout << "\nVectorul de cifre este: \n";
 	for (auto it : cifra)
 	{
-		std::cout << it << "-";
+		std::cout << it << " ";
 	}
-
 
 	int iMax=0;
 	iMax = std::max_element(frecv.begin(), frecv.end()) - frecv.begin();
+	// aflam pozitia pe care se afla cea mai mare cifra
 	int max;
 	max = frecv[iMax];
 	while (max >= 3)
@@ -100,7 +90,7 @@ int main()
 		int n;
 		n = LungimeSirEliminat(iMax, frecv, cifra);
 		std::cout << "Latimea sirului ce trebuie eliminat este " << n << std::endl;
-		// aici este o problema
+		
 		frecv.erase(frecv.begin() + iMax - n , frecv.begin() + iMax +n+1);
 		std::cout << "Vectorul NOU de frecvente este: \n";
 		for (auto it : frecv)
@@ -124,7 +114,7 @@ int main()
 			// Posibil ceva erori de aici
 			while (x < frecv[i])
 			{
-				std::cout << cifra[i] << "-";
+				std::cout << cifra[i] << " ";
 				x++;
 			}
 		}
@@ -132,6 +122,5 @@ int main()
 		iMax = std::max_element(frecv.begin(), frecv.end()) - frecv.begin();
 		max = frecv[iMax];
 	}
-
 }
 
