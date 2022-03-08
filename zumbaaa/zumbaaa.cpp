@@ -49,15 +49,28 @@ int main()
 	int f = 1; //todo:: f = 1 cred ca ar trebui sa fie in for
 	for (int i = 0; i < a.size()-1; i++)
 	{  // todo: daca avem un element unic la sfarsit nu calculeaza bine frecventa
-		if ((a[i]==a[i+1])&&((i+1)!=(a.size()-1)))
+		
+		if ((a[i]==a[i+1])&&((i+1)<(a.size()-1)))
 		{
 			f++;
 		}
-		else if ((i + 1) == (a.size() - 1))
-		{
-			f++;
-			frecv.push_back(f);
-			cifra.push_back(a[i]);
+		
+		else if ((i+1) == (a.size() - 1))
+		{ //aici trebuie pusa o conditie intr-un if
+			if (a[i] == a[i + 1])
+			{
+				f++;
+				frecv.push_back(f);
+				cifra.push_back(a[i]);
+			}
+			else
+			{
+				frecv.push_back(f);
+				cifra.push_back(a[i]);
+				f = 1;
+				frecv.push_back(f);
+				cifra.push_back(a[i+1]);
+			}
 		}
 		else
 		{
